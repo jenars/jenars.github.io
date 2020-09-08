@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="ampTrax">
+	<meta name="keywords" content="VT, Recording, Sounddesign, Theater, Live, Video, Licht, Ton, Light, Sound, Media">
+
+    <title>ampTrax</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" type="text/css">
+
+    <script src="https://use.fontawesome.com/5fb7047e6d.js"></script>
+
+    <style>
+        html {
+          font-family: 'Open Sans', sans-serif;
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+            box-sizing: border-box;
+			scroll-behavior: smooth;
+        }
+		
+
+
+        body {
+
+            height:100%;
+			overflow: scroll;
+			background: #fff00;														/*Farbe bzw. Durchsichtigkeit Hintergrundbild*/
+            margin-left: 0;
+            margin-right: 0;
+            color: #333;															/*Textfarbe gesamte Seite*/
+            font-size: 15px;
+            font-weight:300;
+			-webkit-overflow-scrolling: touch;
+        }
+		
+		body:after{
+			content:"";
+			position:fixed; /* stretch a fixed position to the whole screen */
+			top:0;
+			height:100vh; /* fix for mobile browser address bar appearing disappearing */
+			left:0;
+			right:0;
+			z-index:-1; /* needed to keep in the background */
+			background: url(https://dl.dropboxusercontent.com/s/2ckend9pmcutv5t/ampTrax_Hintergrundbild.JPG) center center;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+
+        p {
+            margin: 5px 0;
+            line-height: 25px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #888;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+        }
+
+        b, strong {font-weight:400;}
+
+
+
+        /* ========================================== */
+        /* HEADER UND NAVIGATION */
+
+
+
+        header {
+            position: relative;
+            margin: 10% auto 0%;												/*Abstand Logo nach oben und unten*/
+            width: auto;
+            max-width: 800px;
+            height: auto;
+            text-align: center;
+        }
+		
+		.Logo {
+			width: 100%;															/*Logo Style -> hier immer 100% Breite*/ 
+			height: auto;
+		}
+		
+		.Werbeblock {
+			width: 100px;															/*Werbeblock Symbole Style -> hier immer 100% Breite*/ 
+			height: 100px;
+			margin: 5% auto 5%;
+		}
+			
+		.Kontakt {
+			width: 25%;															/*Kontakt Bild Style -> hier immer 100% Breite*/ 
+			height: 25%;
+		}
+
+        nav {
+            z-index: 9999;
+            background-color: #00000090;											/*Hintergrundfarbe Navigationslinks*/
+            margin-top: 0px;														/* Abstand zum Logo Top*/	
+        }
+
+        nav ul {
+			display: table;
+			width: 100%;
+			list-style: none;
+			margin: 0;														/* Abstand Hintergrund Navigationslinks zur 1. Sektion */
+			padding: 0;	
+			text-align: center;
+        }
+
+        nav ul li {
+			display: table-cell;
+			text-align: center;
+            padding: 1em 1em;												/*Höhe Navigationsleiste Hintergrundfarbe bzw. Block und Abstand der Wörter*/
+            color: #888;
+        }
+
+        nav ul li a {
+            transition: color .5s ease;
+            font-weight: 400;												/*Dicke der Navigationslinks Buchstaben*/
+        }
+
+        nav ul li a:hover,
+        nav ul li a:active {
+            color: #ffffff;											    	/*Farbe bei Mouse Over Links im Header*/
+        }
+
+		/* ========================================== */
+        /* LINKS MOUSEOVER */
+
+		a img.hover {
+			display: none;
+			width: 32px;
+			height: 32px;
+			margin-top: 0px;
+		}
+		
+		a img.default {
+			display: inherit;
+			width: 32px;
+			height: 32px;
+			margin-top: 0px;
+		}
+		
+		a:hover img.hover {
+			display: inherit;
+			width: 32px;
+			height: 32px;
+			margin-top: 0px;
+		}
+		
+		a:hover img.default {
+			display: none;
+			width: 32px;
+			height: 32px;
+			margin-top: 0px;
+		}
+
+        /* ========================================== */
+        /* BLOECKE / BEREICHE DER SEITE */
+
+        section {
+            position: relative;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        section:nth-child(even) {
+            background-color: #00000050; 										/*Hintergrundfarbe Textbereich Block 1,3,5,7,9,usw.*/
+        }
+		
+		section:nth-child(odd) {
+            background-color: #eef2f5; 									/*Hintergrundfarbe Textbereich Block 2,4,6,8,10,usw. Werbeblock*/
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        figure img {
+            max-width: 100%;
+        }
+
+        .multicolumn {
+            -webkit-perspective:1;
+
+            /* Anzahl Spalten */
+            -webkit-column-count: 2; /* Ch, Saf, And, BB  */
+            -moz-column-count: 2; /* Fx */
+            column-count: 2; /* IE 10, Op 11.1+ */
+
+            /* Abstand Spalten */
+            -webkit-column-gap: 4em;
+            -moz-column-gap: 4em;
+            column-gap: 4em;
+        }
+
+        .one-column {
+            margin-bottom: 60px;
+        }
+
+        .one-column p {
+            margin-bottom: 1.5rem;
+        }
+
+
+        article {
+            overflow: hidden;
+            width: 50%;
+            display: table-cell;
+            padding-right: 50px;
+        }
+
+        article h3  {
+            margin: 10px 0;
+        }
+
+
+        figcaption {
+            display: inline-block;
+            line-height: 25px;
+            margin-top: 20px;
+            max-width: 75%;
+        }
+
+        figcaption span {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 400;
+       }
+
+        .callout {
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            padding: 0 10px 30px;
+            width: auto;
+            max-width: 800px;																	/*Breite des Textbereiches*/
+        }
+
+        .callout a {
+            text-decoration: underline;
+        }
+
+        .callout a:hover {
+            color: #333;
+        }
+
+        .callout > h2 {
+            font-weight: 300;
+            font-size: 30px;																	/*Überschriftgröße der Teilbereiche THEATER, FOH..., usw.*/
+            text-align: center;
+        }
+
+        .callout > ul {
+            padding-left: 1rem;
+        }
+        .callout > ul li {
+            margin: 5px 0;
+        }
+
+
+        .definition-list dt {
+            margin-bottom: 0.21rem;
+            font-weight:400;
+        }
+
+        .definition-list dd {
+            margin: 0 0 1.5rem 0;
+        }
+
+        .secondary-heading {
+            font-weight: normal;
+            font-size: 15px;																	/*Größe zweite Überschrift*/
+            color: #000000;																		/*Farbe zweite Überschrift*/
+        }
+
+        .competency-heading {
+            margin-top: 60px;
+            font-weight: 400;
+        }
+
+        /* Lebenslaufbild oben */
+        .cliped-image {
+            border-radius: 100%;
+            /* ff */
+
+            /* Clip-Path als Alternative
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            */
+        }
+
+        .zitat-image {
+            display: inline-block;
+            padding-right: 2px;
+            width: 45px;
+            height: 45px;
+            vertical-align: top;
+            line-height: 50px;
+            text-align: center;
+            background: #12a8b5;
+        }
+
+        .zitat-image + p {
+            display: inline-block;
+            margin: -5px 0 0 20px;
+            width: 90%;
+        }
+
+        .section-arrow {
+            position: relative;
+            top: -20px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #a0adb7;														/*Farbe des Kreis mit Pfeil nach unten*/
+            border-radius: 50%;
+            line-height: 40px !important;
+            text-align: center;
+            color: #fff;																/*Farbe des Pfeils des Kreis mit Pfeil nach unten*/
+        }
+
+        .back-to-top-button {
+            position: relative;
+            top: -40px;
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: #12a8b5;														/*Farbe des Kreis mit Pfeil nach oben*/
+            border-radius: 50%;
+            line-height: 70px !important;
+            text-align: center;
+            color: #fff;																/*Farbe des Pfeils des Kreis mit Pfeil nach oben*/
+        }
+
+
+        /* ========================================== */
+        /* FOOTER */
+        footer {
+            clear: both;
+            position: relative;
+            margin: 160px auto 0;
+            width: auto;
+            height: 100px;
+            text-align: center;
+            background: #333;
+            color: #7d7d7d;
+        }
+
+        footer a:hover {
+            color: initial;
+            text-decoration: underline;
+        }
+
+        footer .footer-copyright {
+            margin: -40px auto 0; /* -40px --> gleicher Wert wie bei .back-to-top-button */
+            max-width: 800px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        footer i.rotate {
+            /* Pfeil nach oben - rotieren */
+            -webkit-transform: rotate(180deg); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
+            -ms-transform: rotate(180deg); /* IE 9 */
+            transform: rotate(180deg); /* IE 10, Fx 16+, Op 12.1+ */
+        }
+
+
+        /* ========================================== */
+        /* HELFER-KLASSEN */
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left !important;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .mt30 {
+            margin-top: 35px !important;
+        }
+
+        .motto {
+            margin-bottom: 50px;
+        }
+
+        .hr-small {
+            margin: -20px auto 30px;
+            width: 140px;																				/*Breite der Unterstrichlinie der Überschriften THEATER, FOH..., usw. */
+            border: solid 2px #000000;																	/*Farbe der Unterstrichlinie der Überschriften THEATER, FOH..., usw. */
+        }
+
+        .font-licence {
+            margin-top: 10px;
+            font-size: 11px;
+        }
+
+        /* ========================================== */
+        /* ICONS */
+        .icons-social-media {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .icons-social-media > li {
+            display: inline-block;
+            padding: 0 7px 0 7px;
+            color: #888;
+        }
+
+        .icons-social-media > li i {
+            font-size: 20px;
+        }
+
+        .icons-social-media > li i:hover {
+            color: #333;
+            transition: color .5s ease;
+        }
+
+        .icon-location {
+            color: #12a8b5;
+            font-size: 25px !important;
+        }
+
+        .icon-mail {
+            color: #12a8b5;
+            font-size: 20px !important;
+        }
+
+
+        /* ========================================== */
+        /* MEDIA QUERIES FUER RESPONSIVE LAYOUT */
+
+        @media (max-width: 726px) {
+            .motto  {
+                text-align: center;
+            }
+            .motto  p {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 641px) {
+            article {
+                display: block;
+                width: 100%;
+            }
+            figure {
+                margin: 30px auto 0;
+            }
+            figcaption {
+                display: block;
+                width: 55%;
+                margin: 0 auto;
+            }
+
+            .multicolumn {
+                -webkit-column-gap: 2em;
+                -moz-column-gap: 2em;
+                column-gap: 2em;
+            }
+        }
+/*######################################################TESTBEREICH################################################################*/
+/*######################################################TESTBEREICH################################################################*/
+/*######################################################TESTBEREICH################################################################*/
+/*######################################################TESTBEREICH################################################################*/
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- ==================================================TESTBEREICH================================================================= -->
+<!-- ==================================================TESTBEREICH================================================================= -->
+<!-- ==================================================TESTBEREICH================================================================= -->
+<!-- ==================================================TESTBEREICH================================================================= -->
+
+
+
+<!-- ============================================================================================================================== -->
+<!-- HEADER -->
+
+<header id="header-start"> 		
+	<img src="https://dl.dropboxusercontent.com/s/z61u7c9iixt46uh/ampTrax%20728x90%232%20wei%C3%9F.png" 										
+	class="Logo"
+	alt="ampTrax Logo">
+<!-- ampTrax Logo mit Verweis auf CSS Logo -->	
+
+<!--	
+    <nav>
+        <ul>
+            <li><a href="#block-3">ARBEIT</a></li>
+            <li><a href="#block-4">KONTAKT</a></li>
+        </ul>
+    </nav>
+-->	
+
+
+</header>
+
+
+<header id="header-start"> 
+	<nav>
+        <ul>
+            <li><a href="#block-2">
+				<img class="default" src="https://dl.dropboxusercontent.com/s/2u9vy55dayd2erh/Lautsprecher%20128x128%20grau.png"/>
+				<img class="hover" src="https://dl.dropboxusercontent.com/s/go39f8wz909vzj5/Lautsprecher%20128x128%20mouseover%20white.png"/>
+			</a></li>
+			<li><a href="#block-4">
+				<img class="default" src="https://dl.dropboxusercontent.com/s/iyxhe0e7i41w7v9/Gluehbirne%20128x128%20grau.png"/>
+				<img class="hover" src="https://dl.dropboxusercontent.com/s/j4l402gbz3iwlot/Gluehbirne%20128x128%20mouseover%20white.png"/>
+			</a></li>
+			<li><a href="#block-6">
+				<img class="default" src="https://dl.dropboxusercontent.com/s/zmg27jkgumu22ne/Videotechnik%20128x128%20grau.png"/>
+				<img class="hover" src="https://dl.dropboxusercontent.com/s/wheiq1ef0isaq1n/Videotechnik%20128x128%20mousover%20white.png"/>
+			</a></li>
+			<li><a href="#block-8">
+				<img class="default" src="https://dl.dropboxusercontent.com/s/8ieul5huzsyae8h/Vorhang%20128x128%20grau.png"/>
+				<img class="hover" src="https://dl.dropboxusercontent.com/s/oeih9ezuxubhsz2/Vorhang%20128x128%20mouseover%20white.png"/>
+			</a></li>
+			<li><a href="#block-10">
+				<img class="default" src="https://dl.dropboxusercontent.com/s/fdev26rcsw6vs2u/Computer%20Kontakt%20128x128%20grau.png"/>
+				<img class="hover" src="https://dl.dropboxusercontent.com/s/8ya066hs3w9ouc9/Computer%20Kontakt%20128x128%20mouseover%20white.png"/>
+			</a></li>
+        </ul>
+    </nav>
+</header>	
+
+
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 1 -->
+<section id="block-1">
+    <div class="callout text-left">
+        <h2>ARBEIT</h2>
+        <hr class="hr-small"/>
+
+
+        <h3 class="secondary-heading">EINE SPALTE</h3>
+        <div class="one-column">
+            <p>
+               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+				At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.
+            </p>
+
+
+
+			
+        </div>
+
+        <h3 class="secondary-heading">ZWEI SPALTEN</h3>
+        <div class="multicolumn">
+            <p>
+               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+        </div>
+
+        <h3 class="competency-heading">MEINE KOMPETENZEN:</h3>
+
+        <ul>
+            <li>Dies und Das</li>
+            <li>Jenes auch</li>
+            <li>Das sowieso</li>
+            <li>Und überhaupt</li>
+            <li>Bla Bla Blub</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 2 -->
+<section id="block-2">
+	<div>
+		<img src="https://dl.dropboxusercontent.com/s/go39f8wz909vzj5/Lautsprecher%20128x128%20mouseover%20white.png" 										
+		class="Werbeblock"
+		alt="ampTrax Logo">
+		<!-- ampTrax Logo mit Verweis auf CSS Logo -->		
+	</div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 3 -->
+<section id="block-3">
+    <i class="fa fa-chevron-down section-arrow" aria-hidden="true"></i>
+    <div class="callout text-center">
+        <h2>TONTECHNIK</h2>
+        <hr class="hr-small"/>
+
+        <article class="img-item">
+            <figure>
+                <img src="https://www.united-domains.de/beispiel-vorlage/images/bild_1.png" alt="Webapplikation">
+                <figcaption>
+                    <h3>
+                        Livesound
+                    </h3>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.
+                </figcaption>
+            </figure>
+        </article>
+
+        <article class="img-item">
+            <figure>
+                <img src="https://www.united-domains.de/beispiel-vorlage/images/bild_2.png" alt="Firmenplattform">
+                <figcaption>
+                    <h3>
+                        Schallpegelmessung
+                    </h3>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.
+                </figcaption>
+            </figure>
+        </article>
+
+        <br class="clear"/>
+    </div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 4 -->
+<section id="block-4">
+	<div>
+		<img src="https://dl.dropboxusercontent.com/s/j4l402gbz3iwlot/Gluehbirne%20128x128%20mouseover%20white.png" 										
+		class="Werbeblock"
+		alt="ampTrax Logo">
+		<!-- ampTrax Logo mit Verweis auf CSS Logo -->	
+	</div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 5 -->
+<section id="block-5">
+	<i class="fa fa-chevron-down section-arrow" aria-hidden="true"></i>
+    <div class="callout text-left">
+        <h2>LICHTECHNIK</h2>
+        <hr class="hr-small"/>
+
+
+        <h3 class="secondary-heading">EINE SPALTE</h3>
+        <div class="one-column">
+            <p>
+               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+				At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.
+            </p>
+
+
+
+			
+        </div>
+
+        <h3 class="secondary-heading">ZWEI SPALTEN</h3>
+        <div class="multicolumn">
+            <p>
+               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+        </div>
+
+        <h3 class="competency-heading">MEINE KOMPETENZEN:</h3>
+
+        <ul>
+            <li>Dies und Das</li>
+            <li>Jenes auch</li>
+            <li>Das sowieso</li>
+            <li>Und überhaupt</li>
+            <li>Bla Bla Blub</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 6 -->
+<section id="block-6">
+	<div>
+		<img src="https://dl.dropboxusercontent.com/s/wheiq1ef0isaq1n/Videotechnik%20128x128%20mousover%20white.png" 										
+		class="Werbeblock"
+		alt="ampTrax Logo">
+		<!-- ampTrax Logo mit Verweis auf CSS Logo -->	
+	</div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 7 -->
+<section id="block-7">
+    <i class="fa fa-chevron-down section-arrow" aria-hidden="true"></i>
+    <div class="callout text-center">
+        <h2>VIDEOTECHNIK</h2>
+        <hr class="hr-small"/>
+
+        <article class="img-item">
+            <figure>
+                <img src="https://www.united-domains.de/beispiel-vorlage/images/bild_1.png" alt="Webapplikation">
+                <figcaption>
+                    <h3>
+                        Projektion
+                    </h3>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.
+                </figcaption>
+            </figure>
+        </article>
+
+        <article class="img-item">
+            <figure>
+                <img src="https://www.united-domains.de/beispiel-vorlage/images/bild_2.png" alt="Firmenplattform">
+                <figcaption>
+                    <h3>
+                        MadMapper
+                    </h3>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.
+                </figcaption>
+            </figure>
+        </article>
+
+        <br class="clear"/>
+    </div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 8 -->
+<section id="block-8">
+	<div>
+		<img src="https://dl.dropboxusercontent.com/s/oeih9ezuxubhsz2/Vorhang%20128x128%20mouseover%20white.png" 										
+		class="Werbeblock"
+		alt="ampTrax Logo">
+		<!-- ampTrax Logo mit Verweis auf CSS Logo -->	
+	</div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 9 -->
+<section id="block-9">
+	<i class="fa fa-chevron-down section-arrow" aria-hidden="true"></i>
+    <div class="callout text-left">
+        <h2>BÜHNE</h2>
+        <hr class="hr-small"/>
+
+
+        <h3 class="secondary-heading">EINE SPALTE</h3>
+        <div class="one-column">
+            <p>
+               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+				At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.
+            </p>
+
+
+
+			
+        </div>
+
+        <h3 class="secondary-heading">ZWEI SPALTEN</h3>
+        <div class="multicolumn">
+            <p>
+               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+			   At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+        </div>
+
+        <h3 class="competency-heading">MEINE KOMPETENZEN:</h3>
+
+        <ul>
+            <li>Dies und Das</li>
+            <li>Jenes auch</li>
+            <li>Das sowieso</li>
+            <li>Und überhaupt</li>
+            <li>Bla Bla Blub</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 10 -->
+<section id="block-10">
+	<div>
+		<img src="https://dl.dropboxusercontent.com/s/8ya066hs3w9ouc9/Computer%20Kontakt%20128x128%20mouseover%20white.png" 										
+		class="Werbeblock"
+		alt="ampTrax Logo">
+		<!-- ampTrax Logo mit Verweis auf CSS Logo -->	
+	</div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- BLOCK 11 -->
+<section id="block-11">
+    <i class="fa fa-chevron-down section-arrow" aria-hidden="true"></i>
+    <div class="callout text-center">
+        <h2>KONTAKT</h2>
+        <hr class="hr-small"/>
+
+<img src="" alt="Kontakt"
+	class="Kontakt"
+	alt="Kontakt">
+ 
+    </div>
+</section>
+
+<!-- ============================================================================================================================== -->
+<!-- FOOTER -->
+<footer>
+    <a href="#header-start" class="back-to-top-button"><i class="fa fa-chevron-down rotate" aria-hidden="true"></i></a>
+    <div class="footer-copyright">
+        &copy; Das ist ein Blindtext
+
+        <div class="font-licence">
+            <a href="http://fortawesome.github.com/Font-Awesome/">FontAwesome</a> icons licensed under <a href="http://scripts.sil.org/OFL_web"> SIL OFL</a>.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
